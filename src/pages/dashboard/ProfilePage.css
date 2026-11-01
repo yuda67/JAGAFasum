@@ -1,0 +1,383 @@
+/*
+ * Profile — diukur dari desain 1440px (area konten 1340px di kanan sidebar).
+ * Kartu putih 1150×410 mulai 85px dari tepi kiri konten; deskripsi & tombol
+ * "Edit Profile" (233×57) di bawahnya.
+ */
+.profile {
+  width: 100%;
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 52px 105px 72px 85px;
+  font-family: var(--font-sans);
+}
+
+.profile__title {
+  margin: 0 0 18px 10px;
+  color: var(--c-dash-title);
+  font-size: clamp(1.875rem, 2.778vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  animation: fade-up 0.55s var(--ease-out) both;
+}
+
+/* ---------- Kartu informasi ---------- */
+.profile__card {
+  position: relative;
+  min-height: 410px;
+  padding: 32px 55px 56px 47px;
+  border: 3px solid #f1f1ec;
+  border-radius: 20px;
+  background: var(--c-surface);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.06);
+  animation: fade-up 0.6s var(--ease-out) 0.06s both;
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+.profile__card.is-editing {
+  border-color: var(--c-line-cream);
+  box-shadow: 0 22px 44px -28px rgb(30 70 15 / 0.45);
+}
+
+.profile__top {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  column-gap: 67px;
+}
+
+.profile__identity {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-top: 46px;
+  animation: fade-up 0.6s var(--ease-out) 0.14s both;
+}
+
+.profile__name {
+  margin: 0;
+  color: var(--c-ink);
+  font-size: clamp(1.75rem, 2.778vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  overflow-wrap: anywhere;
+}
+
+.profile__province {
+  margin: 12px 0 0;
+  color: var(--c-ink);
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.profile__province-field {
+  max-width: 280px;
+  margin-top: 10px;
+}
+
+.profile__top .count-card {
+  margin-top: 28px;
+}
+
+.profile__contacts {
+  display: grid;
+  grid-template-columns: 335px minmax(0, 1fr);
+  align-items: center;
+  gap: 24px 13px;
+  margin-top: 44px;
+  padding-left: 13px;
+  animation: fade-up 0.6s var(--ease-out) 0.24s both;
+}
+
+/* ---------- Deskripsi ---------- */
+.profile__desc {
+  position: relative;
+  margin: 20px 12px 0 19px;
+  animation: fade-up 0.6s var(--ease-out) 0.3s both;
+}
+
+.profile__desc-label {
+  display: block;
+  color: var(--c-placeholder);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.profile__desc-input {
+  display: block;
+  width: calc(100% - 1px);
+  height: 268px;
+  margin: 13px 0 0 1px;
+  padding: 20px 29px;
+  border: 1px solid var(--c-line-cream);
+  border-radius: 12px;
+  background: var(--c-surface);
+  color: #111;
+  font: 400 1.125rem/1.35 var(--font-sans);
+  resize: none;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+.profile__desc-input[readonly] {
+  cursor: default;
+}
+
+.profile__desc-input:focus {
+  outline: none;
+}
+
+.profile__desc.is-editing .profile__desc-input {
+  border-color: var(--c-line-cream-strong);
+  resize: vertical;
+}
+
+.profile__desc.is-editing .profile__desc-input:focus {
+  border-color: var(--c-btn);
+  box-shadow: 0 0 0 4px rgb(79 163 52 / 0.15);
+}
+
+.profile__desc-input::placeholder {
+  color: var(--c-placeholder);
+}
+
+.profile__desc-count {
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  color: var(--c-placeholder);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+  animation: fade-in 0.3s var(--ease-out);
+}
+
+.profile__form-error {
+  margin: 16px 0 0 19px;
+  color: var(--c-error);
+  font-weight: 600;
+}
+
+/* ---------- Tombol ---------- */
+.profile__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin: 48px 0 0 9px;
+  animation: fade-up 0.6s var(--ease-out) 0.36s both;
+}
+
+.profile__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 233px;
+  height: 57px;
+  padding: 0 28px 0 30px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--c-btn);
+  color: var(--c-white);
+  font: 600 1.5rem/1 var(--font-sans);
+  white-space: nowrap;
+  animation: profile-btn-in 0.45s var(--ease-spring) both;
+  transition:
+    transform 0.4s var(--ease-spring),
+    background-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.profile__btn:disabled {
+  cursor: progress;
+  opacity: 0.85;
+}
+
+.profile__btn:focus-visible {
+  outline: 3px solid var(--c-link);
+  outline-offset: 3px;
+}
+
+.profile__btn-icon {
+  width: 30px;
+  height: 30px;
+  stroke-width: 1.5;
+  transition: transform 0.45s var(--ease-spring);
+}
+
+.profile__btn--save {
+  min-width: 180px;
+}
+
+.profile__btn--ghost {
+  min-width: 140px;
+  border: 2px solid var(--c-line-cream-strong);
+  background: var(--c-surface);
+  color: var(--c-gray-800);
+  font-size: 1.25rem;
+}
+
+.profile__spinner {
+  width: 22px;
+  height: 22px;
+  border: 3px solid rgb(255 255 255 / 0.4);
+  border-top-color: var(--c-white);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@media (hover: hover) {
+  .profile__btn:hover:not(:disabled) {
+    background: var(--c-btn-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 28px -14px rgb(40 110 20 / 0.75);
+  }
+
+  .profile__btn:hover:not(:disabled) .profile__btn-icon--pencil {
+    transform: rotate(-14deg) translateY(-2px);
+  }
+
+  .profile__btn--save:hover:not(:disabled) .profile__btn-icon {
+    transform: scale(1.15);
+  }
+
+  .profile__btn--ghost:hover:not(:disabled) {
+    border-color: var(--c-btn);
+    background: var(--c-surface);
+    color: var(--c-forest-deep);
+  }
+}
+
+.profile__btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+@keyframes profile-btn-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Laptop kecil / tablet ---------- */
+@media (max-width: 1199px) {
+  .profile {
+    padding: 36px clamp(20px, 4vw, 48px) 56px;
+  }
+
+  .profile__card {
+    min-height: 0;
+    padding: 28px 32px 40px;
+  }
+
+  .profile__top {
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 36px;
+  }
+
+  .profile__identity {
+    padding-top: 40px;
+  }
+
+  .profile__top .count-card {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 420px;
+    margin-top: 28px;
+  }
+
+  .profile__contacts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 32px;
+    padding-left: 0;
+  }
+
+  .profile__desc {
+    margin-right: 0;
+  }
+}
+
+/* ---------- HP ---------- */
+@media (max-width: 767px) {
+  .profile {
+    padding: 22px 16px 40px;
+  }
+
+  .profile__title {
+    margin: 0 0 14px;
+  }
+
+  .profile__card {
+    padding: 24px 18px 28px;
+    border-radius: 18px;
+  }
+
+  .profile__top {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .profile__identity {
+    align-items: center;
+    width: 100%;
+    padding-top: 18px;
+  }
+
+  .profile__name {
+    font-size: 1.75rem;
+  }
+
+  .profile__province {
+    margin-top: 6px;
+  }
+
+  .profile__province-field {
+    width: 100%;
+  }
+
+  .profile__top .count-card {
+    max-width: none;
+    margin-top: 22px;
+  }
+
+  .profile__contacts {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-top: 26px;
+  }
+
+  .profile__desc {
+    margin: 18px 0 0;
+  }
+
+  .profile__desc-input {
+    height: 200px;
+    padding: 16px 18px;
+    font-size: 1rem;
+  }
+
+  .profile__actions {
+    margin: 28px 0 0;
+  }
+
+  .profile__btn {
+    flex: 1;
+    min-width: 0;
+    height: 54px;
+    font-size: 1.25rem;
+  }
+}
