@@ -74,33 +74,33 @@ export const dummyReports = [
 ].map((report) => ({ ...report, userId: DUMMY_USER_ID, isDummy: true }))
 
 /*
- * Laporan dummy milik pengguna yang sedang login (halaman "Laporan Yang Sudah
- * dibuat"). Isinya mengikuti desain: 6 laporan "Trotoar Rusak" dengan status
- * Pending, In Progress, Resolved, lalu Pending.
+ * Satu laporan dummy milik pengguna yang sedang login (halaman "Laporan Yang
+ * Sudah dibuat").
  */
-const MY_STATUSES = ["pending", "progress", "done", "pending", "pending", "pending"]
 const myPhoto = photo("laporan-saya", "photo-1779179015285-120aaa822b1b")
 
 export function createMyDummyReports(userId) {
-  return MY_STATUSES.map((status, index) => ({
-    id: `dummy-mine-${index + 1}`,
-    userId,
-    title: "Trotoar Rusak",
-    category: "road",
-    description:
-      "Saya mendapati trotoar yang rusak, sudah dari lama namun tidak di benahi juga. Padahal ramai dilewati masyarakat setiap hari.",
-    location: {
-      address: "Jl.Masjid, Pondok Labu",
-      lat: -6.30752 + index * 0.0004,
-      lon: 106.79602 + index * 0.0003,
+  return [
+    {
+      id: "dummy-mine-1",
+      userId,
+      title: "Trotoar Rusak",
+      category: "road",
+      description:
+        "Saya mendapati trotoar yang rusak, sudah dari lama namun tidak di benahi juga. Padahal ramai dilewati masyarakat setiap hari.",
+      location: {
+        address: "Jl.Bacang, Pasar Minggu, Jakarta selatan",
+        lat: -6.30752,
+        lon: 106.79602,
+      },
+      photo: myPhoto,
+      status: "pending",
+      createdAt: new Date(Date.UTC(2026, 9, 28, 8, 30)).toISOString(),
+      isDummy: true,
     },
-    photo: myPhoto,
-    status,
-    createdAt: new Date(Date.UTC(2026, 9, 28 - index, 8, 30)).toISOString(),
-    isDummy: true,
-  }))
+  ]
 }
 
-export const DUMMY_AVATAR = getImageUrl("avatar") ??
+export const DUMMY_AVATAR =
+  getImageUrl("avatar") ??
   "https://images.unsplash.com/photo-1760411070204-1437a1eb4249?auto=format&fit=crop&crop=faces&w=480&h=480&q=80"
- 
